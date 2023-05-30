@@ -1,0 +1,23 @@
+
+#############foreach($doc in $response.results)
+#################	#foreach($value in $doc.getFieldValue('organism_term_s'))
+#########		$value	
+#######	#end
+##########end
+#set($q=$request.params.get("q"))
+#set($qTerm=$q.substring($q.lastIndexOf("(")))
+#set($index=$qTerm.lastIndexOf(")"))
+#set($lastIndex = $index - 1)
+#set($val=$qTerm.substring(1, $lastIndex))
+
+#foreach($field in $response.facetFields)
+         
+	#foreach($facet in $field.values)
+	#if($facet.name.toLowerCase().contains($val))
+			$facet.name
+	#end
+	#end
+#end
+
+
+
